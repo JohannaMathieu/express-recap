@@ -1,14 +1,24 @@
 const connection = require('./db-config');
 const express = require('express');
-var cors = require('cors')
+const cors = require('cors')
 const app = express();
 const port = process.env.PORT || 5000;
+let today = new Date();
+let counter = 0;
 
 app.use(cors());
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+
+// count the number of requests
+app.get('/count-me', (req, res) => {
+    res.send('Hello World 2!')
+    counter++;
+    console.log(counter);
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
